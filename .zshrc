@@ -55,6 +55,7 @@ plugins=(git)
 plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+source ~/dotfiles/keybindings.sh
 
 # User configuration
 
