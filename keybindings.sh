@@ -5,7 +5,6 @@
 	}
 	zle -N up_widget
 	bindkey "^k" up_widget
-
 # git
 	function git_prepare() {
 		if [ -n "$BUFFER" ];
