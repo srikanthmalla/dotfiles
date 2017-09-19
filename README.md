@@ -7,13 +7,13 @@ clone oh-my-zsh
 
 ``git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh``
 
-copy zshrc to $HOME
+edit ~/.zshrc as below
 
-``cp ~/dotfiles/.zshrc ~/.zshrc``
+``source ~/dotfiles/.zshrc``
 
-change shell to zsh
+If you are using zshell for first time, change shell from bash to zsh
 ``chsh -s /bin/zsh``
 
-copy vimrc to $HOME
+edit ~/.vimrc as below
 
-``cp ~/dotfiles/.vimrc ~/.vimrc``
+``source ~/dotfiles/.vimrc``
