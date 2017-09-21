@@ -48,6 +48,10 @@ colorscheme monokai
 "set shiftwidth=4 " controls the depth of autoindentation
 "set expandtab    " converts tabs to spaces
 set laststatus=2 " show status line always
+"Hotkeys 
+"***************************************
+let mapleader = ","
+nmap <leader>ne :NERDTree<cr>
 
 "autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 "autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
