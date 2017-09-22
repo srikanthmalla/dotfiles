@@ -31,7 +31,7 @@ edit ~/.vimrc as below
 
 ``source ~/dotfiles/.vimrc``
 
-Plug automatically install (it's there in vimrc
+Plugins are automatically installed (it's there in vimrc)
 
 <!-- For the first time install plugins (nerdtree), using command (in VIM)
 ``:PlugInstall`` -->
