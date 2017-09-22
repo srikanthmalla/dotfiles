@@ -53,5 +53,5 @@ set laststatus=2 " show status line always
 let mapleader = ","
 nmap <leader>ne :NERDTree<cr>
 
-"autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 "autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
