@@ -55,4 +55,5 @@ nmap <leader>ne :NERDTree<cr>
 
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 filetype indent plugin on
-"autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+autocmd Filetype python setlocal listchars=tab:>-,trail:-,eol:$ list expandtab tabstop=4 shiftwidth=4
+autocmd Filetype python retab
