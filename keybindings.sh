@@ -39,13 +39,21 @@
 	zle -N edit_and_run
 	bindkey "^v" edit_and_run
 
-# LS
+# Clear
 	function ctrl_l() {
 		BUFFER="clear"
 		zle accept-line
 	}
 	zle -N ctrl_l
 	bindkey "^l" ctrl_l
+
+# catkin_make
+	function ctrl_x() {
+		BUFFER="catkin_make"
+		zle accept-line
+	}
+	zle -N ctrl_x
+	bindkey "^x" ctrl_x
 
 # Enter
 	function enter_line() {
