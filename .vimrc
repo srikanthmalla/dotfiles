@@ -33,6 +33,7 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMixed', 'CtrlPMRU']}
 " Initialize plugin system
 call plug#end()
 
@@ -51,7 +52,11 @@ set laststatus=2 " show status line always
 "Hotkeys 
 "***************************************
 let mapleader = ","
+let mapSpace = " "
 nmap <leader>ne :NERDTree<cr>
+nmap <Space>f :CtrlP<cr>
+nmap <Space>m :CtrlPMixed<cr>
+nmap <Space>r :CtrlPMRU<cr>
 
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 filetype indent plugin on
