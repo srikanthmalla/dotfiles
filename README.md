@@ -39,3 +39,5 @@ Plugins are automatically installed (it's there in vimrc)
 copy colors file to get monokai color scheme (similar to sublime)
 
 ``dotfiles/colors/monokai.vim ~/.vim/colors``
+
+ctlrP package is added, searching a file and opening would be much easier by just typing  space + f
