@@ -38,7 +38,8 @@ Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMixed', 'CtrlPMRU']}
 call plug#end()
 
 "syntax on
-set number
+set number relativenumber 
+set nu rnu
 set ruler
 "highlight Comment ctermfg=Grey
 highlight LineNr ctermfg=Grey
