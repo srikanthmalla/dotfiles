@@ -34,12 +34,15 @@ call plug#begin(expand('~/.vim/plugged'))
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMixed', 'CtrlPMRU']}
+Plug 'wikitopian/hardmode'
+Plug 'scrooloose/nerdcommenter'
 " Initialize plugin system
 call plug#end()
 
 "syntax on
-set number relativenumber 
-set nu rnu
+"set number relativenumber 
+set number
+"set nu rnu
 set ruler
 "highlight Comment ctermfg=Grey
 highlight LineNr ctermfg=Grey
@@ -58,6 +61,7 @@ nmap <leader>ne :NERDTree<cr>
 nmap <Space>f :CtrlP<cr>
 nmap <Space>m :CtrlPMixed<cr>
 nmap <Space>r :CtrlPMRU<cr>
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 filetype indent plugin on
