@@ -32,9 +32,11 @@ call plug#begin(expand('~/.vim/plugged'))
 "Plugins
 "*****************************************************************************
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMixed', 'CtrlPMRU']}
-Plug 'wikitopian/hardmode'
+"Plug 'scrooloose/nerdtree'
+"Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMixed', 'CtrlPMRU']}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+"Plug 'wikitopian/hardmode'
 Plug 'scrooloose/nerdcommenter'
 " Initialize plugin system
 call plug#end()
@@ -57,10 +59,13 @@ set laststatus=2 " show status line always
 "***************************************
 let mapleader = ","
 let mapSpace = " "
-nmap <leader>ne :NERDTree<cr>
-nmap <Space>f :CtrlP<cr>
-nmap <Space>m :CtrlPMixed<cr>
-nmap <Space>r :CtrlPMRU<cr>
+nmap <leader>f :GFiles<cr>
+nmap <leader><leader>f :Files<cr>
+nmap <leader>F :Locate /<cr>
+nmap <leader>b :Buffers<cr>
+nmap <leader>l :Lines<cr>
+nmap <leader><leader>l :BLines<cr>
+
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
