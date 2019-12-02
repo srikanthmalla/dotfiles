@@ -70,5 +70,5 @@ nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 filetype indent plugin on
-autocmd Filetype python setlocal listchars=tab:>-,trail:-,eol:$ list expandtab tabstop=4 shiftwidth=4
+autocmd Filetype python set list listchars=tab:>-,trail:-,eol:$ expandtab tabstop=4 shiftwidth=4
 autocmd Filetype python retab
