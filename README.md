@@ -41,3 +41,7 @@ copy colors file to get monokai color scheme (similar to sublime)
 ``dotfiles/colors/monokai.vim ~/.vim/colors``
 
 ctlrP package is added, searching a file and opening would be much easier by just typing  space + f
+
+# Sublime
+
+`cp ~/dotfiles/sublime/* ~/.config/sublime-text-3/Packages/User/`
