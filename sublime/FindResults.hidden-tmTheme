@@ -92,9 +92,11 @@
     <key>settings</key>
     <dict>
       <key>background</key>
-      <string>#b4d273</string>
+      <string>#2e2e2e</string>
       <key>foreground</key>
-      <string>#000000</string>
+      <string>#ffffff</string>
+      <key>fontStyle</key>
+      <string>bold</string>
 
     </dict>
   </dict>
@@ -118,7 +120,7 @@
       <key>background</key>
       <string>#2e2e2e</string>
       <key>foreground</key>
-      <string>#797979</string>
+      <string>#b4d273</string>
 
     </dict>
   </dict>
@@ -130,7 +132,7 @@
       <key>background</key>
       <string>#2e2e2e</string>
       <key>foreground</key>
-      <string>#797979</string>
+      <string>#b4d273</string>
 
     </dict>
   </dict>
@@ -142,7 +144,7 @@
       <key>background</key>
       <string>#2e2e2e</string>
       <key>foreground</key>
-      <string>#797979</string>
+      <string>#b4d273</string>
 
     </dict>
   </dict>
