@@ -1,4 +1,3 @@
-alias download_music="sudo youtube-dl --no-check-certificate --extract-audio --audio-format mp3 "
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
