@@ -47,3 +47,9 @@ ctlrP package is added, searching a file and opening would be much easier by jus
 # Sublime
 
 `cp ~/dotfiles/sublime/* ~/.config/sublime-text-3/Packages/User/`
+
+# other customizations
+
+1. add keybindings `Ctrl+Alt+C` to open chrome (in settings -> keyboard)
+
+2.
