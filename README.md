@@ -25,6 +25,8 @@ to change suggested color to light-blue (you can edit this file):
 
 Also, you can edit keybindings.sh, depending on your need (ctrl+g git auto add+commit+push)
 
+Background color for the terminal with robbyrussell theme is #132C36
+
 # VIM
 
 edit ~/.vimrc as below
