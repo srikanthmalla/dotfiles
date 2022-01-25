@@ -44,6 +44,16 @@ copy colors file to get monokai color scheme (similar to sublime)
 
 ctlrP package is added, searching a file and opening would be much easier by just typing  space + f
 
+# NEOVIM
+
+to use existing .vimrc configuration for neovim add the below content to ~/.config/nvim/init.vim:
+
+```
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath=&runtimepath
+source ~/.vimrc
+
+```
 # Sublime
 
 `cp ~/dotfiles/sublime/* ~/.config/sublime-text-3/Packages/User/`
