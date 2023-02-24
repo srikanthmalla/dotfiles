@@ -17,7 +17,7 @@ If you are using zshell for first time, change shell from bash to zsh
 
 Zsh-autoSuggestions plugin:
 
-``git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions``
+``git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions``
 
 to change suggested color to light-blue (you can edit this file):
 
