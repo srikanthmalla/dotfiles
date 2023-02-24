@@ -1,7 +1,7 @@
 # ZSH
 clone the repo to $HOME
 
-``git clone https://github.com/srikanthmalla/dotfiles ~/``
+``git clone https://github.com/srikanthmalla/dotfiles ~/dotfiles``
 
 clone oh-my-zsh
 
