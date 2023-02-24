@@ -1,10 +1,10 @@
 # up
-	function up_widget() {
-		BUFFER="cd .."
-		zle accept-line
-	}
-	zle -N up_widget
-	bindkey "^k" up_widget
+#	function up_widget() {
+#		BUFFER="cd .."
+#		zle accept-line
+#	}
+#	zle -N up_widget
+#	bindkey "^k" up_widget
 # git
 	function git_prepare() {
 		if [ -n "$BUFFER" ];
@@ -23,13 +23,13 @@
 	bindkey "^g" git_prepare
 
 # home
-	function goto_home() { 
-		BUFFER="cd ~/"$BUFFER
-		zle end-of-line
-		zle accept-line
-	}
-	zle -N goto_home
-	bindkey "^h" goto_home
+#	function goto_home() { 
+#		BUFFER="cd ~/"$BUFFER
+#		zle end-of-line
+#		zle accept-line
+#	}
+#	zle -N goto_home
+#	bindkey "^h" goto_home
 
 # Edit and rerun
 	function edit_and_run() {
@@ -48,12 +48,12 @@
 	bindkey "^l" ctrl_l
 
 # catkin_make
-	function ctrl_x() {
-		BUFFER="catkin_make"
-		zle accept-line
-	}
-	zle -N ctrl_x
-	bindkey "^x" ctrl_x
+#	function ctrl_x() {
+#		BUFFER="catkin_make"
+#		zle accept-line
+#	}
+#	zle -N ctrl_x
+#	bindkey "^x" ctrl_x
 
 # Enter
 	function enter_line() {
@@ -63,9 +63,9 @@
 	bindkey "^o" enter_line
 
 # Sudo
-	function add_sudo() {
-		BUFFER="sudo "$BUFFER
-		zle end-of-line
-	}
-	zle -N add_sudo
-	bindkey "^s" add_sudo
+#	function add_sudo() {
+#		BUFFER="sudo "$BUFFER
+#		zle end-of-line
+#	}
+#	zle -N add_sudo
+#	bindkey "^s" add_sudo
