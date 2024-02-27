@@ -72,3 +72,9 @@ autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 filetype indent plugin on
 autocmd Filetype python set list listchars=tab:>-,trail:-,eol:$ expandtab tabstop=4 shiftwidth=4
 autocmd Filetype python retab
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
