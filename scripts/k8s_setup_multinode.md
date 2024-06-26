@@ -171,27 +171,26 @@ Kubectl-Get-Nodes-Command-After-Joining-Worker-Nodes
 As we can see nodes status is ‘NotReady’, so to make it active. We must install CNI (Container Network Interface) or network add-on plugins like Calico, Flannel and Weave-net.
 
 ## 8) Install Calico Network Plugin
+
 A network plugin is required to enable communication between pods in the cluster. Run following kubectl command to install Calico network plugin from the master node,
 ```
 $ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
 ```
 Output of above commands would look like below,
-
-Install-Calico-Pod-Network-Addon-From-Master-Node-Ubuntu
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/758b0b79-6846-4751-9ed1-e23cebdab4c5)
 
 Verify the status of pods in kube-system namespace,
 ```
 $ kubectl get pods -n kube-system
 ```
 Output,
-
-Kube-System-Pods-after-calico-installation
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/50e9af51-b09f-4236-a60e-0cfb1ca82034)
 
 Perfect, check the nodes status as well.
 ```
 $ kubectl get nodes
 ```
-Nodes-Ready-Status-Post-Calico-Installation-Master-Node
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/0d8b9307-3abc-47b3-b4df-93f386a1c9a8)
 
 Great, above confirms that nodes are active node. Now, we can say that our Kubernetes cluster is functional.
 
