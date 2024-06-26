@@ -159,12 +159,14 @@ A network plugin is required to enable communication between pods in the cluster
 $ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
 ```
 Output of above commands would look like below,
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/758b0b79-6846-4751-9ed1-e23cebdab4c5)
 
 Verify the status of pods in kube-system namespace,
 ```
 $ kubectl get pods -n kube-system
 ```
 Output,
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/50e9af51-b09f-4236-a60e-0cfb1ca82034)
 
 Perfect, check the nodes status as well.
 ```
