@@ -170,6 +170,8 @@ Perfect, check the nodes status as well.
 ```
 $ kubectl get nodes
 ```
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/0d8b9307-3abc-47b3-b4df-93f386a1c9a8)
+
 Great, above confirms that nodes are active node. Now, we can say that our Kubernetes cluster is functional.
 
 ## 7. Remove Master Node Taint
