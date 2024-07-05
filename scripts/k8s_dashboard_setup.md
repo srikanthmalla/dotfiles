@@ -80,7 +80,7 @@ https://<Worker-IP-Address>:32559
 ![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/12184103-0328-4c0c-931e-4401d576ab74)
 
 
-## 4)  Generate Token for Kubernetes Dashboard
+## 5)  Generate Token for Kubernetes Dashboard
 Open one more ssh session to master node and create a service account and assign required permissions using following yaml file,
 ```
 $ vim user.yaml
@@ -134,7 +134,7 @@ Click-Signin-After-entering-token-kubernetes-dashboard
 
 Click on “Sign in”
 
-## 5) Access Kubernetes Dashboard
+## 6) Access Kubernetes Dashboard
 When we click on “Sign in” in above then we will get the following dashboard,
 
 Kubernetes-Dashboard-Overview-Ubuntu
