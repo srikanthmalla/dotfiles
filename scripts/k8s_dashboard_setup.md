@@ -61,6 +61,7 @@ https://localhost:8443
 ```
 ## 4b) Accessing the Dashboard from Outside
 Create a YAML file named `values.yaml` with the following content.
+
 ![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/4f822852-f1d0-407f-aede-659d06f559bd)
 
 Upgrade the Helm release with the YAML file we created in step 5. It will update the existing service.
