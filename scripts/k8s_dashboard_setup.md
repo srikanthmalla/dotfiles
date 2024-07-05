@@ -48,7 +48,7 @@ Install-Kubernetes-Dashboard-Using-Helm
 
 Output above confirms dashboard has been deployed in Kubernetes-dashboard namespace. So, in order to access dashboard from the cluster locally, run
 ```
-$ kubectl expose deployment kubernetes-dashboard-kong --name k8s-kong-svc --type NodePort --port=443 --target-port=8443 -n kubernetes-dashboard
+$ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
 ```
 Kubernetes-Dashboard-Port-Forward-Kubectl-Command
 
