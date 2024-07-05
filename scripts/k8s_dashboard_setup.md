@@ -1,4 +1,6 @@
-Source: https://www.linuxtechi.com/how-to-install-kubernetes-dashboard/
+Sources: 
+[1]https://www.linuxtechi.com/how-to-install-kubernetes-dashboard/
+[2]https://www.kerno.io/learn/kubernetes-dashboard-deploy-visualize-cluster
 
 # How to Install Kubernetes Dashboard (Simple Guide)
 In this blog post, we will show you how to install Kubernetes dashboard using helm step-by-step, empowering you to streamline your Kubernetes management tasks.
