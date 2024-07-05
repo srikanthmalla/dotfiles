@@ -112,6 +112,10 @@ metadata:
     kubernetes.io/service-account.name: "admin-user"
 type: kubernetes.io/service-account-token
 ```
+
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/61c9f506-b063-4cb4-bc88-5961bd6fd96f)
+
+
 save and exit the file
 
 Next create service account by running following command
