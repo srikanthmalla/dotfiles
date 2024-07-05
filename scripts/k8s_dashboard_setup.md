@@ -46,77 +46,84 @@ $ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-da
 ```
 Install-Kubernetes-Dashboard-Using-Helm
 
-Output above confirms dashboard has been deployed in Kubernetes-dashboard namespace. So, in order to access dashboard from the cluster locally, run
+Output above confirms dashboard has been deployed in Kubernetes-dashboard namespace. 
+
+## 4a) Accessing the Dashboard Locally
+So, in order to access dashboard from the cluster locally, run
 ```
 $ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
 ```
-Kubernetes-Dashboard-Port-Forward-Kubectl-Command
-
 Now, open the web browser of system on which you have run above command, type following URL
 ```
 https://localhost:8443
 ```
-Accept-Risk-SSL-Kubernetes-Dashboard
+## 4b) Accessing the Dashboard from Outside
+Create a YAML file named `values.yaml` with the following content.
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/4f822852-f1d0-407f-aede-659d06f559bd)
 
-Click on “Accept the Risk and Continue”
-
-Token-For-Kubernetes-Dashboard-Login
-
-As you can see above, we need a token to login. So, let’s generate the required token in the next step.
-
-Accessing Kubernetes Dashboard from Outside
-
-In case you want to access dashboard from outside of Kubernetes cluster then expose the Kubernetes-dashboard deployment using NodePort type, as show below:
+Upgrade the Helm release with the YAML file we created in step 5. It will update the existing service.
 ```
-$ kubectl expose deployment kubernetes-dashboard --name k8s-svc --type NodePort --port 8443 -n kubernetes-dashboard
+helm upgrade kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard -f values.yaml -n kubernetes-dashboard
 ```
-Check the dashboard service, run
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/7380c31a-ebd2-4f12-9f03-bbd64714a199)
 
-Dashboard-SVC-NodePort-Kubernetes
+check which port the kong proxy is exposed to 
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/9dc8da3b-c46c-4d0b-ad78-30586524a8c5)
 
-Next, try to access dashboard from outside of cluster using the URL:
+Next, try to access dashboard from outside of cluster using the URL (using the exposed kong proxy port):
 ```
-https://<Worker-IP-Address>:31233
+https://<Worker-IP-Address>:32559
 ```
-Kubernetes-Dashboard-URL-Outside-Cluster
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/12184103-0328-4c0c-931e-4401d576ab74)
+
 
 ## 4)  Generate Token for Kubernetes Dashboard
 Open one more ssh session to master node and create a service account and assign required permissions using following yaml file,
 ```
-$ vi k8s-dashboard-account.yaml
+$ vim user.yaml
 apiVersion: v1
 kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kube-system
+metadata:  
+  name: admin-user  
+  namespace: kubernetes-dashboard
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
-metadata:
+metadata:  
   name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+roleRef:  
+  apiGroup: rbac.authorization.k8s.io  
+  kind: ClusterRole  
   name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kube-system
+subjects:- 
+  kind: ServiceAccount  
+  name: admin-user  
+  namespace: kubernetes-dashboard
+---
+apiVersion: v1
+kind: Secret
+metadata:  
+  name: admin-user  
+  namespace: kubernetes-dashboard  
+  annotations:    
+    kubernetes.io/service-account.name: "admin-user"
+type: kubernetes.io/service-account-token
 ```
 save and exit the file
 
 Next create service account by running following command
 ```
-$ kubectl create -f k8s-dashboard-account.yaml
+$ kubectl apply -f user.yaml
 serviceaccount/admin-user created
 clusterrolebinding.rbac.authorization.k8s.io/admin-user created
 $
 ```
 Now, generate the token for admin-user, run
 ```
-$ kubectl -n kube-system create token admin-user
+$ kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
 ```
-Generate-Token-K8s-Dashboard-kubectl-Command
+![image](https://github.com/srikanthmalla/dotfiles/assets/8193784/7394b532-7fef-4e8c-b457-ccc9071dd008)
+
 
 Copy this token and head back to browser, paste it on “Enter Token” field as shown below,
 
