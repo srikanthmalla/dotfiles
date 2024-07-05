@@ -95,8 +95,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io  
   kind: ClusterRole  
   name: cluster-admin
-subjects:- 
-  kind: ServiceAccount  
+subjects: 
+- kind: ServiceAccount  
   name: admin-user  
   namespace: kubernetes-dashboard
 ---
