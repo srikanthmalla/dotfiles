@@ -193,3 +193,88 @@ Since this is a single-node setup and you'll want to run pods on the master node
 ```
 kubectl taint nodes k8smaster.example.net node-role.kubernetes.io/control-plane-
 ```
+
+## 7) Setup GPU kubernetes plugin for GPU node
+
+https://github.com/NVIDIA/k8s-device-plugin#prerequisites
+
+https://www.jimangel.io/posts/nvidia-rtx-gpu-kubernetes-setup/
+
+
+
+configure docker runtime (crio, containerd,..) to use nvidia container runtime. Below are steps for containerd and docker (https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-containerd-for-kubernetes):
+
+```
+sudo nvidia-ctk runtime configure --runtime=containerd
+
+sudo systemctl restart containerd
+```
+
+
+
+nertdctl installation (if needed to test nvidia rc hook): https://www.guide2wsl.com/nerdctl/
+```
+NERDCTL_VERSION=1.7.6 # see https://github.com/containerd/nerdctl/releases for the latest release
+
+archType="amd64"
+if test "$(uname -m)" = "aarch64"
+then
+    archType="arm64"
+fi
+
+wget -q "https://github.com/containerd/nerdctl/releases/download/v${NERDCTL_VERSION}/nerdctl-full-${NERDCTL_VERSION}-linux-${archType}.tar.gz" -O /tmp/nerdctl.tar.gz
+mkdir -p ~/.local/bin
+tar -C ~/.local/bin/ -xzf /tmp/nerdctl.tar.gz --strip-components 1 bin/nerdctl
+
+echo -e '\nexport PATH="${PATH}:~/.local/bin"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+test:
+```
+# `nvidia-smi` command ran with cuda 12.3
+sudo nerdctl run -it --rm --gpus all nvidia/cuda:12.3.1-base-ubuntu20.04 nvidia-smi
+
+# `nvcc -V` command ran with cuda 12.3 (the "12.3.1-base" image doesn't include nvcc)
+sudo nerdctl run -it --rm --gpus all nvidia/cuda:12.3.1-devel-ubuntu20.04 nvcc -V
+```
+
+
+
+install gpu operator using helm.
+```
+helm repo add nvidia https://helm.ngc.nvidia.com/nvidia \
+   && helm repo update
+
+
+helm install --wait gpu-operator \
+     -n gpu-operator --create-namespace \
+      nvidia/gpu-operator \
+      --set driver.enabled=false \
+      --set toolkit.enabled=false
+```
+
+
+
+check the log:
+```
+>>kubectl get pods -n gpu-operator | grep -i nvidia
+
+nvidia-cuda-validator-cg4mm                                  0/1     Completed   0          39s
+nvidia-dcgm-exporter-gzvzk                                   1/1     Running     0          58s
+nvidia-device-plugin-daemonset-574ql                         1/1     Running     0          58s
+nvidia-operator-validator-dljv2                              0/1     Init:3/4    0          58s
+
+
+
+>>kubectl -n gpu-operator logs deployment/gpu-operator | grep GPU
+
+{"level":"info","ts":1721573814.5885231,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"k8smaster.example.net","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1721573814.58855,"logger":"controllers.ClusterPolicy","msg":"Node has GPU(s)","NodeName":"k8smaster.example.net"}
+{"level":"info","ts":1721573814.5885699,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"k8smaster.example.net"}
+{"level":"info","ts":1721573814.58866,"logger":"controllers.ClusterPolicy","msg":"Applying correct GPU state labels to the node","NodeName":"k8smaster.example.net"}
+{"level":"info","ts":1721573814.6119583,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+{"level":"info","ts":1721573815.6731489,"logger":"controllers.ClusterPolicy","msg":"GPU workload configuration","NodeName":"k8smaster.example.net","GpuWorkloadConfig":"container"}
+{"level":"info","ts":1721573815.6731753,"logger":"controllers.ClusterPolicy","msg":"Checking GPU state labels on the node","NodeName":"k8smaster.example.net"}
+{"level":"info","ts":1721573815.6731992,"logger":"controllers.ClusterPolicy","msg":"Number of nodes with GPU label","NodeCount":1}
+```
