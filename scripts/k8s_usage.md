@@ -87,7 +87,39 @@ ENTRYPOINT ["/bin/bash", "-c", "./train.sh"]
 ```
 docker build -t retriever-training1 .
 ```
+ If there is an error with pulling images:
 
+https://www.reddit.com/r/kubernetes/comments/1buz5fh/getting_the_status_error_errimageneverpull_but/
+
+TLDR:  container runtime issue.
+```
+#save the image in .tar archive
+docker save *imageName* -o *imageName*.tar
+
+#pull the image to containerd 
+sudo ctr -n=k8s.io images import *imageName*.tar
+
+#Check the image
+sudo crictl images
+```
+
+Reasons for above :
+
+[1] docker engine shim support was discontinued by kubernetes (because it is too much work for them and to support generic cri): https://kubernetes.io/blog/2022/02/17/dockershim-faq/
+
+[2] need to setup kubernetes with new adapter (cri-dockerd), maintained by docker and mirantis (formerly docker enterprise): https://mirantis.github.io/cri-dockerd/
+
+
+Better solution for build to avoid 3 steps:
+
+https://github.com/containerd/nerdctl
+```
+## to build image directly to containerd
+nerdctl --namespace k8s.io build -t retriever-training1 .
+
+## to list images
+nerdctl --namespace k8s.io ps -a  
+```
 
 3. submit the job to kubernetes
 ```
@@ -124,23 +156,6 @@ spec:
   backoffLimit: 2
 ```
 
-
-
-If there is an error with pulling images:
-
-https://www.reddit.com/r/kubernetes/comments/1buz5fh/getting_the_status_error_errimageneverpull_but/
-
-TLDR:  container runtime issue.
-```
-#save the image in .tar archive
-docker save *imageName* -o *imageName*.tar
-
-#pull the image to containerd 
-sudo ctr -n=k8s.io images import *imageName*.tar
-
-#Check the image
-sudo crictl images
-```
 
 
 ## monitor the job
