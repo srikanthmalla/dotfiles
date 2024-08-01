@@ -283,15 +283,16 @@ nvidia-operator-validator-dljv2                              0/1     Init:3/4   
 1. Install buildkit
 ```
 sudo mkdir -p /usr/local/bin
-sudo curl -L -o ~/buildkit-v0.15.1.linux-amd64.tar.gz https://github.com/moby/buildkit/releases/download/v0.15.1/buildkit-v0.15.1.linux-amd64.tar.gz
+sudo curl -L -o ~/buildkit-v0.10.0.linux-amd64.tar.gz https://github.com/moby/buildkit/releases/download/v0.10.0/buildkit-v0.10.0.linux-amd64.tar.gz
+##sudo curl -L -o ~/buildkit-v0.15.1.linux-amd64.tar.gz https://github.com/moby/buildkit/releases/download/v0.15.1/buildkit-v0.15.1.linux-amd64.tar.gz
  
-tar -xvf buildkit-v0.15.1.linux-amd64.tar.gz
+tar -xvf buildkit-v0.10.0.linux-amd64.tar.gz
 sudo cp -r bin/* /usr/local/bin/
 ```
 
 2. start buildkit
 ```
-sudo nohup buildkitd > /var/log/buildkitd.log 2>&1 &
+sudo nohup buildkitd > ~/buildkitd.log 2>&1 &
 ```
 
 3. verify buildkit is running
