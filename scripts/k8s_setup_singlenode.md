@@ -284,6 +284,7 @@ nvidia-operator-validator-dljv2                              0/1     Init:3/4   
 ```
 sudo mkdir -p /usr/local/bin
 sudo curl -L -o ~/buildkit-v0.10.0.linux-amd64.tar.gz https://github.com/moby/buildkit/releases/download/v0.10.0/buildkit-v0.10.0.linux-amd64.tar.gz
+##10.0 working fine, but others are giving error during tarball export
 ##sudo curl -L -o ~/buildkit-v0.15.1.linux-amd64.tar.gz https://github.com/moby/buildkit/releases/download/v0.15.1/buildkit-v0.15.1.linux-amd64.tar.gz
  
 tar -xvf buildkit-v0.10.0.linux-amd64.tar.gz
