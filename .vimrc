@@ -78,3 +78,10 @@ autocmd Filetype python retab
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+set clipboard=unnamedplus
+
+" custom plugin for code assitant
+set runtimepath+=~/.vim/vim-tgi-plugin
+" To toggle between split vim screens
+nnoremap <leader>ww <C-w>w
