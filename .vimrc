@@ -65,6 +65,8 @@ nmap <leader>F :Locate /<cr>
 nmap <leader>b :Buffers<cr>
 nmap <leader>l :Lines<cr>
 nmap <leader><leader>l :BLines<cr>
+nmap <leader>t :Tags<cr>
+nmap <leader>ct :BTags<cr>
 
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
