@@ -38,6 +38,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "Plug 'wikitopian/hardmode'
 Plug 'scrooloose/nerdcommenter'
+" custom plugin for code assitant
+Plug 'srikanthmalla/vim-tgi-plugin'
 " Initialize plugin system
 call plug#end()
 
@@ -83,7 +85,5 @@ endif
 
 set clipboard=unnamedplus
 
-" custom plugin for code assitant
-set runtimepath+=~/.vim/vim-tgi-plugin
 " To toggle between split vim screens
 nnoremap <leader>ww <C-w>w
