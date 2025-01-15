@@ -42,7 +42,12 @@ copy colors file to get monokai color scheme (similar to sublime)
 
 ``cp dotfiles/colors/monokai.vim ~/.vim/colors``
 
-ctlrP package is added, searching a file and opening would be much easier by just typing  space + f
+
+# TMUX
+
+copy `.tmux.conf` to user home `~/`
+
+``cp .tmux.conf ~/``
 
 # NEOVIM
 
