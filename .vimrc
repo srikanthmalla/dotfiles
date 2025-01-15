@@ -121,17 +121,14 @@ function! CloseWindowOrBuffer()
         " If Yes is selected, save and quit the buffer (write and quit)
         exec ":wq!"
       else
-        " If No is selected, don't save, just quit
-        exec ":q!"
+	exec ":q!"
       endif
+    " Check if it's a regular buffer (not a temporary one)
+    elseif &buftype == 'nofile' || &buftype == 'nowrite'
+      " If it's a buffer without a file (i.e., no file associated), just delete the buffer
+      exec ":bd!"
     else
-      " Check if it's a regular buffer (not a temporary one)
-      if &buftype == 'nofile' || &buftype == 'nowrite'
-        " If it's a buffer without a file (i.e., no file associated), just delete the buffer
-        exec ":bd!"
-      else
-        " Close the current window (split) without deleting the buffer
-        exec ":close"
-      endif
+      " If No is selected, don't save, just quit
+      exec ":q!"
     endif
 endfunction
