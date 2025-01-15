@@ -33,13 +33,14 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 call plug#begin('~/.vim/plugged')
 "Plug 'scrooloose/nerdtree'
-"Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMixed', 'CtrlPMRU']}
+" fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'wikitopian/hardmode'
 Plug 'scrooloose/nerdcommenter'
 " custom plugin for code assitant
 Plug 'srikanthmalla/vim-tgi-plugin'
+" vim tmux navigator
+Plug 'christoomey/vim-tmux-navigator'
 " Initialize plugin system
 call plug#end()
 
@@ -70,8 +71,6 @@ nmap <leader><leader>l :BLines<cr>
 nmap <leader>t :Tags<cr>
 nmap <leader>ct :BTags<cr>
 
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 filetype indent plugin on
 autocmd Filetype python set list listchars=tab:>-,trail:-,eol:$ expandtab tabstop=4 shiftwidth=4
@@ -87,3 +86,52 @@ set clipboard=unnamedplus
 
 " To toggle between split vim screens
 nnoremap <leader>ww <C-w>w
+
+" Map Ctrl-a + Arrow keys for Vim and terminal split navigation
+nnoremap <silent> <C-a><Left>  <C-w>h   " Navigate left
+nnoremap <silent> <C-a><Down>  <C-w>j   " Navigate down
+nnoremap <silent> <C-a><Up>    <C-w>k   " Navigate up
+nnoremap <silent> <C-a><Right> <C-w>l   " Navigate right
+
+" Tmux pane navigation (with tmux)
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-a><Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <C-a><Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <C-a><Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-a><Right> :TmuxNavigateRight<cr>
+
+" split vim screen
+" Horizontal split with , + h
+nnoremap <leader>h :split<CR>
+" Vertical split with , + v
+nnoremap <leader>v :vsplit<CR>
+
+set mouse=
+
+" Map Ctrl-D to close window, buffer, or terminal based on state
+nnoremap <silent> <C-d> :call CloseWindowOrBuffer()<CR>
+
+" Function to check the situation and close accordingly
+function! CloseWindowOrBuffer()
+    " If the buffer is modified (unsaved changes)
+    if &modified
+      " Show a confirmation prompt before saving and quitting
+      let confirm_result = confirm("There are unsaved changes. Do you want to save and quit?", "&Yes\n&No", 1)
+      if confirm_result == 1
+        " If Yes is selected, save and quit the buffer (write and quit)
+        exec ":wq!"
+      else
+        " If No is selected, don't save, just quit
+        exec ":q!"
+      endif
+    else
+      " Check if it's a regular buffer (not a temporary one)
+      if &buftype == 'nofile' || &buftype == 'nowrite'
+        " If it's a buffer without a file (i.e., no file associated), just delete the buffer
+        exec ":bd!"
+      else
+        " Close the current window (split) without deleting the buffer
+        exec ":close"
+      endif
+    endif
+endfunction
