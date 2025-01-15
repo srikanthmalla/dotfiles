@@ -108,11 +108,11 @@ nnoremap <leader>v :vsplit<CR>
 
 set mouse=
 
-" Map Ctrl-D to close window, buffer, or terminal based on state
-nnoremap <silent> <C-d> :call CloseWindowOrBuffer()<CR>
+" Map Ctrl-D to close window or split 
+nnoremap <silent> <C-d> :call CloseWindow()<CR>
 
 " Function to check the situation and close accordingly
-function! CloseWindowOrBuffer()
+function! CloseWindow()
     " If the buffer is modified (unsaved changes)
     if &modified
       " Show a confirmation prompt before saving and quitting
@@ -123,12 +123,36 @@ function! CloseWindowOrBuffer()
       else
 	exec ":q!"
       endif
-    " Check if it's a regular buffer (not a temporary one)
-    elseif &buftype == 'nofile' || &buftype == 'nowrite'
-      " If it's a buffer without a file (i.e., no file associated), just delete the buffer
-      exec ":bd!"
     else
       " If No is selected, don't save, just quit
       exec ":q!"
     endif
+endfunction
+
+" Map Ctrl-B to close window or split 
+nnoremap <silent> <C-b> :call CloseBuffer()<CR>
+" Function to handle buffer closing
+function! CloseBuffer()
+  " If the buffer is modified (unsaved changes)
+  if &modified
+    " Show a confirmation prompt before saving and quitting the buffer
+    let confirm_result = confirm("There are unsaved changes. Do you want to save the buffer?", "&Yes\n&No", 1)
+    if confirm_result == 1
+      " If Yes is selected, save and delete the buffer
+      exec ":w"
+      exec ":bd!"
+    else
+      " If No is selected, forcefully delete the buffer without saving
+      exec ":bd!"
+    endif
+  else
+    " If the buffer is not modified
+    if &buftype == 'nofile' || &buftype == 'nowrite'
+      " For temporary buffers, force delete
+      exec ":bd!"
+    else
+      " For regular buffers, just delete the buffer
+      exec ":bd"
+    endif
+  endif
 endfunction
