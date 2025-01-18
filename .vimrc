@@ -39,6 +39,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 " custom plugin for code assitant
 Plug 'srikanthmalla/vim-tgi-plugin'
+" custom plugin for triton IR inspection
+Plug 'srikanthmalla/vim-triton-ir-inspector'
 " vim tmux navigator
 Plug 'christoomey/vim-tmux-navigator'
 " Initialize plugin system
